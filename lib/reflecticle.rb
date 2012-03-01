@@ -39,9 +39,23 @@ class Reflecticle
 
   def self.api_key
     api_key = ''
-    File.open(File.expand_path('~/.reflecticle'), 'r') do |f|
-      api_key = f.read.chomp
+    begin
+      File.open(File.expand_path('~/.reflecticle'), 'r') do |f|
+        api_key = f.read.chomp
+      end
+    rescue Errno::ENOENT
+      missing_key!
     end
+
+    if api_key == ''
+      missing_key!
+    end
+
     api_key
+  end
+
+  def self.missing_key!
+    puts "Please put your API key in ~/.reflecticle"
+    exit
   end
 end
