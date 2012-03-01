@@ -1,7 +1,7 @@
 require 'json'
 
 class Reflecticle
-  URL = "http://www.reflecticle.com/api/" #activities/create.json?api_key=68cf81e48d51519f918d1165dad5c4884d66a894&project_id=1&description=Tested%20Reflecticle%20API
+  URL = "http://www.reflecticle.com/api/"
   def initialize(api_key)
     @api_key = api_key
     @site = RestClient::Resource.new(URL)
