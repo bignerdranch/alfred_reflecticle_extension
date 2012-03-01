@@ -8,3 +8,10 @@ Installation
 
     $ bundle install
     $ rake install
+
+Usage
+-----
+
+Once installed, you can simply type:
+
+    reflecticle ProjectName Installed Reflecticle Alfred Extension!
