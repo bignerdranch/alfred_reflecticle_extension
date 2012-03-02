@@ -1,4 +1,5 @@
 require 'json'
+require 'rest-client'
 
 class Reflecticle
   URL = "http://www.reflecticle.com/api/"
@@ -8,7 +9,13 @@ class Reflecticle
   end
 
   def log(message)
-    project_id = find_project_id(message)
+    project_id, project_name = find_project(message)
+
+    # Assume the project is the first set of words in the message
+    if project_name
+      message = message.sub(/#{project_name} /, '')
+    end
+
     if project_id < 0
       puts "Project not found!"
     else
@@ -25,15 +32,12 @@ class Reflecticle
     @projects = JSON.parse(raw_projects)
   end
 
-  def find_project_id(message)
+  def find_project(message)
     project = projects.find {|project| message.match(/#{project['name']}/) }
 
-    # Assume the project is the first set of words in the message
     if project
-      message.sub(project['name'], '')
+      return project['id'], project['name']
     end
-
-    project['id'] if project
   end
 
   def self.api_key=(key)
