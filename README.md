@@ -20,4 +20,4 @@ Usage
 
 Once installed, you can simply invoke Alfred and type:
 
-    reflecticle ProjectName Installed Reflecticle Alfred Extension!
+    reflecticle Project Name Installed Reflecticle Alfred Extension!

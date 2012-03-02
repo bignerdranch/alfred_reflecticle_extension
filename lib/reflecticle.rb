@@ -7,8 +7,8 @@ class Reflecticle
     @site = RestClient::Resource.new(URL)
   end
 
-  def log(project, message)
-    project_id = find_project_id(project)
+  def log(message)
+    project_id = find_project_id(message)
     if project_id < 0
       puts "Project not found!"
     else
@@ -18,17 +18,22 @@ class Reflecticle
     end
   end
 
-  def find_project_id(project_name)
-    raw_projects = @site['projects'].get(:params => {:api_key => @api_key})
-    projects = JSON.parse(raw_projects)
+  def projects
+    return @projects if @projects
 
-    projects.each do |project|
-      if project['name'] == project_name
-        return project['id']
-      end
+    raw_projects = @site['projects'].get(:params => {:api_key => @api_key})
+    @projects = JSON.parse(raw_projects)
+  end
+
+  def find_project_id(message)
+    project = projects.find {|project| message.match(/#{project['name']}/) }
+
+    # Assume the project is the first set of words in the message
+    if project
+      message.sub(project['name'], '')
     end
 
-    id
+    project['id'] if project
   end
 
   def self.api_key=(key)
