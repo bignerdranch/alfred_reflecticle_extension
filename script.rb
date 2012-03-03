@@ -1,5 +1,6 @@
 require 'rubygems'
-require 'bundler/setup'
+require 'bundler'
+Bundler.require
 require File.join(File.dirname(__FILE__), 'lib', 'reflecticle')
 
 api_key = Reflecticle.api_key
