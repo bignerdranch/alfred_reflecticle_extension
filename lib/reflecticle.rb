@@ -1,4 +1,5 @@
 require 'json'
+require 'rest-client'
 
 class Reflecticle
   URL = "http://www.reflecticle.com/api/"
