@@ -13,6 +13,7 @@ GEM
     pry-remote (0.1.1)
       pry (~> 0.9.8)
       slop (~> 2.1)
+    rake (0.9.2.2)
     rest-client (1.6.7)
       mime-types (>= 1.16)
     rspec (2.8.0)
@@ -31,5 +32,6 @@ PLATFORMS
 DEPENDENCIES
   json_pure
   pry-remote
+  rake
   rest-client
   rspec
