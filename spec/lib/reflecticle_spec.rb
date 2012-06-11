@@ -8,18 +8,19 @@ describe Reflecticle do
 
   describe '#log' do
     it 'logs to Reflecticle' do
-      message = "Message!"
+      message_content = "Message!"
+      full_message = "#{project_name} #{message_content}"
       activities_create = "#{Reflecticle::URL}/activities/create.json"
-      params = { :api_key => api_key, :project_id => project_id, :description => message }
+      params = { :api_key => api_key, :project_id => project_id, :description => message_content }
+      reflecticle.stub(:find_project).with(full_message).and_return([project_id, project_name])
       RestClient::Resource.any_instance.should_receive(:post).with(params)
-      reflecticle.stub(:find_project_id).with(project_name).and_return(project_id)
 
-      reflecticle.log(project_name, message)
+      reflecticle.log(full_message)
     end
   end
 
-  describe '#find_project_id' do
-    it 'searches Reflecticle projects by name and returns id' do
+  describe '#find_project' do
+    it 'searches Reflecticle projects by message and returns a project name and ID' do
       projects = [
                    { 'name' => 'Highgroove',  'id' => 5 },
                    { 'name' => project_name,  'id' => project_id },
@@ -27,7 +28,8 @@ describe Reflecticle do
                  ].to_json
       RestClient::Resource.any_instance.should_receive(:get).with(:params => {:api_key => api_key}).and_return(projects)
 
-      reflecticle.find_project_id(project_name).should eq project_id
+      message = "#{project_name} message!"
+      reflecticle.find_project(message).should eq [project_id, project_name]
     end
   end
 
