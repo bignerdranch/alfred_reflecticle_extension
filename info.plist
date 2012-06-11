@@ -33,7 +33,7 @@
 	<key>silent</key>
 	<true/>
 	<key>subtitle</key>
-	<string>refleticle &lt;project&gt; &lt;message&gt;</string>
+	<string>reflecticle &lt;project&gt; &lt;message&gt;</string>
 	<key>title</key>
 	<string>Reflecticle</string>
 </dict>
