@@ -1,6 +1,5 @@
 require 'json'
 require 'rest-client'
-require 'pry-remote'
 
 class Reflecticle
   URL = "http://www.reflecticle.com/api/"
@@ -14,7 +13,7 @@ class Reflecticle
 
     # Assume the project is the first set of words in the message
     if project_name
-      message = message.sub(/^#{project_name}\s+/i, '')
+      message = message.sub(/#{project_name} /, '')
     end
 
     if project_id < 0
