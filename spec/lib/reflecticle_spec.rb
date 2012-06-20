@@ -35,24 +35,23 @@ describe Reflecticle do
 
   describe '.api_key=' do
     it "creates & writes to the users home directory with the API key" do
-      pending "WTF Ruby can't create the file!? WHY"
-      Reflecticle.api_key = api_key
-
-      File.open(File.expand_path('~/.reflecticle')) do |file|
-        key = file.read
-        key.should eq api_key
-      end
-    end
-  end
-
-  describe '.api_key' do
-    it "reads the API key from the home directory" do
-      pending "WTF Ruby can't create the file!? WHY"
       File.open(File.expand_path('~/.reflecticle'), 'w') do |file|
         file << api_key
       end
 
       Reflecticle.api_key.should eq api_key
+    end
+  end
+
+  describe '.api_key' do
+    it "reads the API key from the home directory" do
+      Reflecticle.api_key = api_key
+
+      key = nil
+      File.open(File.expand_path('~/.reflecticle')) do |file|
+        key = file.read
+      end
+      key.should eq api_key
     end
   end
 end
