@@ -36,7 +36,7 @@ class Reflecticle
     project = projects.find {|project| message.match(/#{project['name']}/i) }
 
     if project
-      return project['id'], project['name']
+      return project['id'], message.match(/#{project['name']}/i).to_s
     end
   end
 
