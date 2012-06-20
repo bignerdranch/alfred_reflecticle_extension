@@ -33,7 +33,7 @@ class Reflecticle
   end
 
   def find_project(message)
-    project = projects.find {|project| message.match(/#{project['name']}/) }
+    project = projects.find {|project| message.match(/#{project['name']}/i) }
 
     if project
       return project['id'], project['name']
