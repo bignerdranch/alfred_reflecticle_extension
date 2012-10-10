@@ -3,6 +3,10 @@ Reflecticle Alfred Extension
 
 A little ruby script & xml files that let you post to Reflecticle from Alfred
 
+![Caution](https://a248.e.akamai.net/assets.github.com/images/icons/emoji/warning.png?v5)
+
+**You probably want to use [this version rewritten to avoid depending on Ruby](http://github.com/wallace/alfred_reflecticle_extension) which also supports location services.**
+
 Installation
 ------------
 
